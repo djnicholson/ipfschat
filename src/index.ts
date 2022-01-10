@@ -23,6 +23,11 @@ const getLine: (rl: readline.Interface, question: string) => Promise<string> = (
     console.log(`${_.from}: ${_.data.toString()}`);
   });
 
+  setInterval(
+    async () => console.log("peers: " + (await node.pubsub.peers(TOPIC))),
+    10000
+  );
+
   // eslint-disable-next-line no-constant-condition
   while (true) {
     node.pubsub.publish(TOPIC, message(await getLine(rl, "")));
