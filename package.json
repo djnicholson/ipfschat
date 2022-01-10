@@ -21,5 +21,8 @@
     "lint": "npx prettier -w . && npx eslint --fix .",
     "start": "npx ts-node src/index.ts"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "ipfs-core": "^0.13.0"
+  }
 }
