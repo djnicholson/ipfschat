@@ -1,0 +1,25 @@
+{
+  "author": "@djnicholson",
+  "description": "Peer-to-peer serverless chat over IPFS",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "name": "ipfschat",
+  "scripts": {
+    "build": "npx tsc",
+    "lint": "npx prettier -w . && npx eslint --fix .",
+    "start": "npx ts-node src/index.ts"
+  },
+  "version": "1.0.0"
+}
