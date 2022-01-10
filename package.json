@@ -2,6 +2,7 @@
   "author": "@djnicholson",
   "description": "Peer-to-peer serverless chat over IPFS",
   "devDependencies": {
+    "@types/node": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
     "eslint": "^8.6.0",
@@ -19,7 +20,7 @@
   "scripts": {
     "build": "npx tsc",
     "lint": "npx prettier -w . && npx eslint --fix .",
-    "start": "npx ts-node src/index.ts"
+    "start": "npm run build && docker run --rm -it -w /repo -v /Users/david/github/@djnicholson/ipfschat:/repo node:lts-alpine node build/index.js"
   },
   "version": "1.0.0",
   "dependencies": {

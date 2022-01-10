@@ -1,17 +1,30 @@
 import * as ipfs from "ipfs-core";
+import * as readline from "readline";
+import { stdin as input, stdout as output } from "process";
+
+const TOPIC = "FB79F977-5676-488E-890F-9830C4831262";
+
+const message = (m: string) => Buffer.from(m, "ascii");
+
+const getLine: (rl: readline.Interface, question: string) => Promise<string> = (
+  rl: readline.Interface,
+  question: string
+) => new Promise((resolve) => rl.question(question, resolve));
 
 (async () => {
+  const rl = readline.createInterface({ input, output });
+
   const node = await ipfs.create();
 
-  const data = "Hello, <YOUR NAME HERE>";
+  const id = await node.id();
+  console.log("My ID is: " + id.id);
 
-  // add your data to to IPFS - this can be a string, a Buffer,
-  // a stream of Buffers, etc
-  const results = await node.add(data);
+  await node.pubsub.subscribe(TOPIC, (_) => {
+    console.log(`${_.from}: ${_.data.toString()}`);
+  });
 
-  // CID (Content IDentifier) uniquely addresses the data
-  // and can be used to get it again.
-  console.log(results.cid.toString());
-
-  await node.stop();
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    node.pubsub.publish(TOPIC, message(await getLine(rl, "")));
+  }
 })();
