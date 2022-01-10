@@ -20,7 +20,7 @@
   "scripts": {
     "build": "npx tsc",
     "lint": "npx prettier -w . && npx eslint --fix .",
-    "start": "npm run build && docker run --rm -it -w /repo -v /Users/david/github/@djnicholson/ipfschat:/repo node:lts-alpine node build/index.js"
+    "start": "./start.sh"
   },
   "version": "1.0.0",
   "dependencies": {
